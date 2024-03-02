@@ -1,0 +1,150 @@
+  {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Responsive HTML Template">
+    <meta name="description" content="Responsive HTML Template">
+    <meta name="author" content="Murad Əliyev">
+<meta name="description" content="News">
+<meta property="og:url"           content="index" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+
+  <meta property="og:image"  content="{% static 'img/news-via-satellite.png' %}" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>title</title>
+
+<link rel="shortcut icon" href="{% static 'img/news-via-satellite.png' %}" />
+
+<!-- STYLES -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/superfish.css' %} " media="screen"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/fontello/fontello.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}" media="screen" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/ui.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/960.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/devices/1000.css' %}" media="only screen and (min-width: 768px) and (max-width: 1000px)" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/devices/767.css' %}" media="only screen and (min-width: 480px) and (max-width: 767px)" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/devices/479.css' %}" media="only screen and (min-width: 200px) and (max-width: 479px)" />
+<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<!--[if lt IE 9]> <script type="text/javascript" src="js/customM.js"></script> <![endif]-->
+
+
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div class="body-wrapper">
+	<div class="controller">
+    <div class="controller2">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="container">
+                <div class="column">
+                    <div class="logo">
+                        <a href="{% url 'polls:home' %}"><img src="{% static 'img/logo.png' %}" alt="MyPassion" /></a>
+                    </div>
+
+                    <div class="search">
+                        <form action="search" method="POST">
+
+                            <input type="text" placeholder="Sayt üzrə axtarış" name="search" class="ft"/>
+                            <input type="submit" value="" class="fs">
+                        </form>
+                    </div>
+                    
+                    <!-- Nav -->
+                    <nav id="nav">
+                        <ul class="sf-menu">
+                        <li class="current"><a href="{% url 'polls:home' %}">ANA SƏHİFƏ.</a></li>
+
+                            {% if kat != None %}
+                    {% for foo in kat %}
+
+                                   <li><a href="{% url 'polls:categories' foo.kat_url %}">{{ foo.kategory_name }}</a></li>
+
+                    {% endfor %}
+                    {% endif %}
+
+                        </ul>
+                        
+                    </nav>
+                    <!-- /Nav -->
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+      {% block body %}
+
+{%endblock%}
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <div class="column-one-fourth">
+                    <h5 class="line"><span>Tweets.</span></h5>
+                    <div id="tweets"></div>
+                </div>
+                <div class="column-one-fourth">
+                    <h5 class="line"><span>Navigation.</span></h5>
+                    <ul class="footnav">
+                            {% if kat != None %}
+                    {% for foo in kat %}
+                                   <li><a href="{% url 'polls:categories' foo.kat_url %}"><i class="icon-right-open"></i>{{ foo.kategory_name }}</a></li>
+{% endfor %}
+                    {% endif %}
+                    </ul>
+                </div>
+                <div class="column-one-fourth">
+                    <h5 class="line"><span>Flickr Stream.</span></h5>
+                    <div class="flickrfeed">
+                        <ul id="basicuse" class="thumbs"><li class="hide"></li></ul>
+                    </div>
+                </div>
+                <div class="column-one-fourth">
+                    <h5 class="line"><span>About.</span></h5>
+                    <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhon cus sem purus eu sapien. Lorem ipsum dolor sit amet adipcising elit. Elit norem simuls tortor lorem adipcising purus mosteu dsapien egestas.</p>
+                </div>
+                <p class="copyright">Copyright 2017. Bütün Hüquqlar Qorunur</p>
+            </div>
+        </footer>
+        <!-- / Footer -->
+    
+    </div>
+    </div>
+</div>
+<!-- / Body Wrapper -->
+
+
+<!-- SCRIPTS -->
+
+<script type="text/javascript" src="{% static  'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/easing.min.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/1.8.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/ui.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/carouFredSel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/superfish.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/customM.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/flexslider-min.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/tweetable.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/timeago.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/jflickrfeed.min.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/mobilemenu.js' %}"></script>
+
+<!--[if lt IE 9]> <script type="text/javascript" src="js/html5.js"></script> <![endif]-->
+<script type="text/javascript" src="{% static 'js/mypassion.js' %}"></script>
+
+</body>
+</html>

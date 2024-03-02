@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: bash -c "source /myprojects/alienv/bin/activate && python3 manage.py runserver 0.0.0.0:8000"
+    restart: always
+    image: news_site
+    container_name: news
+    volumes:
+      - .:/mydockerproject
+    ports:
+      - "8000:8000"

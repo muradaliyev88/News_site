@@ -1,0 +1,59 @@
+{% extends 'header.html' %}
+{% block body %}
+{% load static %}
+ <!-- Content -->
+        <section id="content">
+            <div class="container">
+              <!-- Main Content -->
+                @if (isset($world))
+                @foreach ($world as $worlds)
+                                    @endforeach
+                                     @endif
+                <div class="breadcrumbs column">
+                  <p><a href="('index') ">ANA SƏHİFƏ</a>   \\  Axtarış.</p>
+                </div>
+
+                <div class="main-content">
+
+            <!-- Popular News -->
+            <!-- World News -->
+
+            <!-- World News -->
+
+            <div class="column-two-third">
+                <h5 class="line">
+                Axtarışın nəticələri
+                </h5>
+
+
+
+<div class="outerwide">
+    <ul class="block2">
+    @if (isset($search))
+     @foreach ($search as $worlds)
+       <li class="m-r-no">
+            <a href="($worlds->kat_url."/".$worlds->id) "><img style="width: 140px; height: 86px;" src="($worlds->picture) " alt="$worlds->title" class="alignleft" /></a>
+            <p>
+                <span>$worlds->created_at</span>
+                <a href="($worlds->kat_url."/".$worlds->id) ">!!html_entity_decode(str_limit($worlds->title, $limit = 30, $end = '...'))!!</a>
+            </p>
+            <span class="rating"><span style="width:60%;"></span></span>
+        </li>
+         @endforeach
+    </ul>
+</div>
+            </div>
+            @endif
+            <!-- /World News -->
+
+
+                </div>
+                <!-- /Main Content -->
+
+
+
+            </div>
+        </section>
+        <!-- / Content -->
+
+ {% endblock %}

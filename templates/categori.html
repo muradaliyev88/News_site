@@ -1,0 +1,87 @@
+{% extends 'header.html' %}
+{% block body %}
+{% load static %}
+
+<!-- Content -->
+        <section id="content">
+            <div class="container">
+            	<!-- Main Content -->
+
+
+
+                <div class="breadcrumbs column">
+                    {% if posts != None %}
+
+                	<p><a href="{% url 'polls:home' %}">ANA SƏHİFƏ</a>   \\ {% for post in posts|slice:":1" %}
+                	{{ post.kategory_name }}</p>
+                	{% endfor %}
+
+
+                    {% endif %}
+                </div>
+
+                <div class="main-content">
+
+            <!-- Popular News -->
+            <!-- World News -->
+
+            <!-- World News -->
+
+<div class="column-two-third">
+    <h5 class="line">
+    {% if posts != None %}
+                    {% for foo in posts|slice:":1" %}
+        <span>{{ foo.kategory_name}}</span>
+        {% endfor %}
+                    {% endif %}
+        <div class="navbar">
+            <a id="next2" class="next" href="#"><span></span></a>
+            <a id="prev2" class="prev" href="#"><span></span></a>
+        </div>
+    </h5>
+
+    <div class="outerwide" >
+        <ul class="wnews" id="carousel2">
+         {% if posts != None %}
+                    {% for foo in posts %}
+            <li>
+                <img width="300" height="160" src="{% static foo.picture %}" alt="{{ foo.title}}" class="alignleft" />
+                <h6 class="regular"><a href="{% url 'polls:slug' page_slug=foo.kat_url id=foo.id %}">{{ foo.title}}</a></h6>
+                <span class="meta">{{ foo.created_at }} \\   <a href="{% url 'polls:categories' page_slug=foo.kat_url %}">{{ foo.kategory_name }}</a></span>
+                 <p>{{ foo.body|truncatechars_html:30}} </p>
+            </li>
+                    {% endfor %}
+                    {% endif %}
+        </ul>
+    </div>
+
+    <div class="outerwide">
+        <ul class="block2">
+         {% if posts != None %}
+                    {% for foo in posts %}
+           <li class="m-r-no">
+                <a href="{% url 'polls:slug' page_slug=foo.kat_url id=foo.id %}"><img style="width: 140px; height: 86px;" src="{% static foo.picture %}" alt="{{ foo.title}}" class="alignleft" /></a>
+                <p>
+                    <span>{{ foo.created_at }}</span>
+                    <a href="{% url 'polls:slug' page_slug=foo.kat_url id=foo.id %}">{{ foo.title}}</a>
+                </p>
+                <span class="rating"><span style="width:60%;"></span></span>
+            </li>
+             {% endfor %}
+                    {% endif %}
+        </ul>
+    </div>
+</div>
+
+            <!-- /World News -->
+
+
+                </div>
+                <!-- /Main Content -->
+
+             {% include "left.html" %}
+
+            </div>
+        </section>
+        <!-- / Content -->
+{% endblock %}

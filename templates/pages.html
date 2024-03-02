@@ -1,0 +1,102 @@
+{% extends 'header.html' %}
+{% block body %}
+{% load static %}
+<!-- Content -->
+<section id="content">
+<div class="container">
+    {% if posts != None %}
+        <div class="breadcrumbs column">
+        {% for post in post_id %}
+        <p><a href="{% url 'polls:home' %} ">ANA SƏHİFƏ</a>   \\  <a href="{% url 'polls:categories' page_slug=post.kat_url %}">{{ post.kategory_name }}\\</a> {{ post.title }} </p>
+        {% endfor %}
+
+
+</div>
+    {% endif %}
+<!-- Main Content -->
+<div class="main-content">
+
+<!-- Single -->
+<div class="column-two-third single">
+<div class="flexslider">
+    <ul class="slides">
+{% if post_id%}
+    {% for post in post_id %}
+<li>
+            <img src="{% static post.picture %} " alt="{{ post.title }}" />
+        </li>
+{% endfor %}
+{% endif %}
+
+    </ul>
+</div>
+{% if post_id%}
+    {% for post in post_id %}
+<h6 class="title">{{ post.title }}</h6>
+<span class="meta">{{ post.created_at }}.   \\    <a href="{% url 'polls:categories' page_slug=post.kat_url %}">{{ post.kategory_name }} </a> </span>
+        {{ post.body }}
+{% endfor %}
+{% endif %}
+
+<div class="relatednews">
+{% if posts%}
+{% for post in post_id %}
+    <h5 class="line"><span>{{ post.kategory_name }}</span></h5>
+    {% endfor %}
+    <ul>
+{% for post in posts %}
+        <li>
+            <a href="{% url 'polls:slug' page_slug=post.kat_url id=post.id %} "><img src="{% static post.picture %} " alt="{{ post.title }}" /></a>
+            <p>
+                <span>{{ post.created_at }}</span>
+                <a href="{% url 'polls:slug' page_slug=post.kat_url id=post.id %} ">{{ post.title }}</a>
+            </p>
+            <span class="rating"><span style="width:80%;"></span></span>
+        </li>
+{% endfor %}
+    </ul>
+
+{% endif %}
+</div>
+
+<div class="comments">
+<h5 class="line"><span>Comments.</span></h5>
+<ul>
+      <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.9&appId=705354219636156";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="fb-root"></div>
+
+<div class="fb-like" data-href="($sekils->kat_url."/".$sekils->id)" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.9&appId=705354219636156";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-send" data-href="http://flexnews.hol.es/$sekils->kat_url."/".$sekils->id"></div>
+<div class="fb-comments" data-href="($sekils->kat_url."/".$sekils->id) " data-numposts="5"></div>
+    </ul>
+</div>
+
+
+</div>
+<!-- /Single -->
+
+</div>
+<!-- /Main Content -->
+
+{% include 'left.html' %}
+
+</div>
+</section>
+<!-- / Content -->
+{% endblock %}
